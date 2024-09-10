@@ -30,6 +30,7 @@ def add_footer():
 # Load OpenAI API key from an environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Fetch from environment variable
 
+
 # Define the function to generate chatbot responses using the newer OpenAI API
 def generate_response(prompt):
     try:

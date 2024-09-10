@@ -1,0 +1,13 @@
+[theme]
+primaryColor = "#007bff"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#000000"
+font = "sans serif"
+
+[server]
+headless = true
+enableCORS = true  # Ensuring it is enabled for cross-origin resource sharing
+enableXsrfProtection = false  # Disabling XSRF protection since CORS is enabled
+port = 8501  # This is the default port, change if necessary
+
