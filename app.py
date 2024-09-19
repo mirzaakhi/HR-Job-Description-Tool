@@ -8,7 +8,9 @@ from io import StringIO, BytesIO
 from fpdf import FPDF
 
 # Load OpenAI API key securely
-openai.api_key = "Your OpenAI API"
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+
 
 # Initialize session state variables
 session_variables = ['job_summary_complete', 'job_title', 'department', 'location', 
@@ -433,9 +435,13 @@ def refine_job_description():
             context = st.session_state['generated_job_description']
             
             # Updated prompt to ensure all fields are included
-            prompt = (f"Refine the following job description to be more concise and specific, but make sure to include "
-                      f"all the provided fields, even if the additional instructions are 'No' or 'None'. \n\n{context}\n\n"
-                      f"Refinement Instructions: {refinement_instructions}")
+            prompt = (f"Refine the following job description to be more concise and specific, ensuring that the skills, "
+          f"qualifications, and responsibilities are relevant to a machine learning engineer role. "
+          f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
+          f"such as web development frameworks. Keep the focus on machine learning algorithms, data science tools, "
+          f"and relevant programming languages like Python and R. \n\n{context}\n\n"
+          f"Refinement Instructions: {refinement_instructions}")
+
             
             refined_text = generate_response(prompt)
             st.session_state['refined_description'] = refined_text
