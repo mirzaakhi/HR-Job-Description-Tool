@@ -16,12 +16,10 @@ httpcore
 httpx
 idna
 Jinja2
-jiter
 jsonschema
 markdown-it-py
 MarkupSafe
 mdurl
-narwhals
 numpy
 openai
 packaging
