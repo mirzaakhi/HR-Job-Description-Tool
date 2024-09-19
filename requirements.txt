@@ -16,7 +16,6 @@ httpcore>=0.14.0
 httpx>=0.20.0
 idna>=3.0
 Jinja2>=3.0.0
-jiter==REMOVE (or try removing this as it's causing issues)
 jsonschema>=4.0.0
 markdown-it-py>=3.0.0
 MarkupSafe>=2.0.0
