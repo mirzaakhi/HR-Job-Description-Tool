@@ -16,7 +16,7 @@ httpcore==0.17.3
 httpx==0.24.1
 idna==3.8
 Jinja2==3.1.4
-jsonschema==4.23.0
+jsonschema==4.21.0
 jsonschema-specifications==2023.12.1
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
