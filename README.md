@@ -1,73 +1,149 @@
 # HR Job Description Tool
 
-## Description
-
-A simple Streamlit-based application to generate HR job descriptions based on different criteria.
+## Overview
+The **HR Job Description Tool** is a **Streamlit-based application** designed to generate comprehensive HR job descriptions using ChatGPT. It allows users to create, refine, and download job descriptions tailored to specific criteria such as responsibilities, qualifications, and skills.
 
 ## Features
-
 - **Job Summary**: Overview of the job position.
-- **Key Responsibilities**: Lists the major duties of the job.
-- **Required Qualifications**: Specifies the qualifications required for the job.
-- **Skills & Experience**: Details the skills and experience required for the job.
-- **How to Apply**: Provides application instructions.
-- **Generate Custom Job Description**: Allows users to create custom job descriptions based on input criteria.
+- **Key Responsibilities**: Define major duties of the role.
+- **Required Qualifications**: Specify essential qualifications and certifications.
+- **Skills & Experience**: Highlight required skills and experience for the role.
+- **Refine Job Description**: Fine-tune job descriptions using ChatGPT.
+- **Download as PDF**: Export the final job description as a PDF.
 
-## Installation
+## AWS Infrastructure Components
 
-1. Clone the repository:
+- **EC2 (Elastic Compute Cloud)**: Hosts the application on a virtual machine instance. The public IP for accessing the deployed app is [http://54.224.25.176:8501](http://54.224.25.176:8501).
+- **ALB (Application Load Balancer)**: Distributes traffic across the application, ensuring scalability and high availability.
+- **ECS (Elastic Container Service)**: Manages and orchestrates Docker containers for future deployments with **Fargate**.
+- **ECR (Elastic Container Registry)**: Stores Docker images for deployment in **ECS**.
+- **IAM Role**: Manages access and permissions for AWS resources used by the application.
 
+## Installation on AWS EC2
+
+### Step-by-step Guide to Set up EC2 and Deploy Application:
+
+1. **Log into your EC2 instance**:
+    - Access your instance via SSH using your EC2 key pair.
+
+2. **Switch to root**:
     ```bash
-    git clone https://github.com/yourusername/HR-Job-Description-Tool.git
-    cd HR-Job-Description-Tool
+    sudo su
     ```
 
-2. Install dependencies:
+3. **Update the EC2 instance**:
+    ```bash
+    yum upgrade -y
+    yum update -y
+    ```
 
+4. **Install Git**:
+    ```bash
+    yum install git -y
+    ```
+
+5. **Clone the Repository**:
+    ```bash
+    git clone <REPO_LINK>
+    cd <PROJECT_REPO>
+    ```
+
+6. **Install Python and Pip**:
+    ```bash
+    yum install python3-pip -y
+    ```
+
+### Initial Testing Without Docker:
+7. **Install Dependencies**:
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Run the Streamlit app:
-
+8. **Run the Streamlit App**:
     ```bash
-    streamlit run app.py
+    streamlit run <PATH_TO_STREAMLIT_PY_FILE>
+    ```
+    - You can now access the app in your browser using the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501)
+
+9. **Stop the Streamlit App**:
+    - Press `Ctrl + C` to stop the app running in the terminal.
+
+### Testing with Docker:
+10. **Install Docker**:
+    ```bash
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sh get-docker.sh
     ```
 
-## Usage
+11. **Verify Docker Installation**:
+    ```bash
+    docker --version
+    ```
 
-- Open the app in your browser using the URL provided by Streamlit.
-- Navigate using the sidebar to see different sections of the job description.
-- Fill in details to generate a custom job description.
+12. **Start Docker**:
+    ```bash
+    systemctl start docker
+    ```
+
+13. **Check Docker Status**:
+    ```bash
+    systemctl status docker
+    ```
+    - Press `Ctrl + C` to exit after confirming Docker is running.
+
+14. **Build Docker Image**:
+    ```bash
+    docker build -t project-image .
+    ```
+    - Ensure the Dockerfile is present in your project directory.
+
+15. **List Docker Images**:
+    ```bash
+    docker images -a
+    ```
+
+16. **Run the Docker Container**:
+    ```bash
+    docker run -d -p 8501:8501 --name project-container project-image
+    ```
+
+17. **Verify Running Containers**:
+    ```bash
+    docker ps
+    ```
+    - Your app should now be accessible at the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501).
+
+### Stopping the Application and EC2 Instance:
+18. **Stop Docker Container**:
+    ```bash
+    docker stop <CONTAINER_ID>
+    ```
+    - The container ID can be found in the output of `docker ps`.
+
+19. **Stop the EC2 Instance**:
+    - From the AWS Management Console, stop the EC2 instance to save costs.
 
 ## Docker Setup
 
-If you prefer using Docker:
+If you prefer to work directly with Docker, follow these steps to run the app:
 
-1. Build the Docker image:
-
+1. **Build the Docker image**:
     ```bash
     docker build -t hr-job-description-tool .
     ```
 
-2. Run the Docker container:
-
+2. **Run the Docker container**:
     ```bash
-    docker run -p 8501:8501 hr-job-description-tool
+    docker run -d -p 8501:8501 hr-job-description-tool
     ```
 
-## Contributing
+3. **Access the app**:
+    - Use the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501) to open the app in a web browser.
 
-Feel free to submit issues and pull requests.
+## Usage
+1. Open the app in your browser using the public IP and port.
+2. Use the sidebar to navigate through job description sections.
+3. Generate a job description based on your input and download it as a PDF.
 
 ## License
-
 This project is licensed under the MIT License.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
