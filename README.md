@@ -15,7 +15,7 @@ The Job Description Tool with Chatbot is a Streamlit-based application designed 
 
 - **EC2 (Elastic Compute Cloud)**: Hosts the application on a virtual machine instance. The public IP for accessing the deployed app is [http://54.224.25.176:8501](http://54.224.25.176:8501).
 - **ALB (Application Load Balancer)**: Distributes traffic across the application, ensuring scalability and high availability.
-- **ECS (Elastic Container Service)**: Manages and orchestrates Docker containers for future deployments with **Fargate**.
+- **ECS (Elastic Container Service)**: Manages and conducts Docker containers for future deployments with **Fargate**.
 - **ECR (Elastic Container Registry)**: Stores Docker images for deployment in **ECS**.
 - **IAM Role**: Manages access and permissions for AWS resources used by the application.
 
