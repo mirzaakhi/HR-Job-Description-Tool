@@ -38,13 +38,6 @@ To set up the HR Job Description Tool on an **AWS EC2 instance**, follow these h
     ```bash
     streamlit run app.py
     ```
-
-## Usage
-
-- Access the application using the public IP address of the EC2 instance on port **8501**.
-- Use the sidebar to navigate through the different sections of the job description.
-- Generate a job description based on input criteria and download it as a PDF.
-
 ## Docker Setup
 
 To run the application inside a Docker container:
@@ -58,6 +51,12 @@ To run the application inside a Docker container:
     ```bash
     docker run -d -p 8501:8501 hr-job-description-tool
     ```
+    
+## Usage
+
+- Access the application using the public IP address of the EC2 instance on port **8501**.
+- Use the sidebar to navigate through the different sections of the job description.
+- Generate a job description based on input criteria and download it as a PDF.
 
 ## License
 
