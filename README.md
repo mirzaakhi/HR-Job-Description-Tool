@@ -1,7 +1,7 @@
 # Job Description Tool with Chatbot
 
 ## Overview
-The **Job Description Tool with Chatbot** is a **Streamlit-based application** designed to generate comprehensive job descriptions using ChatGPT. It allows users to create, refine, and download job descriptions tailored to specific criteria such as responsibilities, qualifications, and skills, for any kind of job.
+The Job Description Tool with Chatbot is a Streamlit-based application designed to generate comprehensive job descriptions using ChatGPT. Users can create, refine, and download job descriptions customized to specific criteria, such as responsibilities, qualifications, and skills.
 
 ## Features
 - **Job Summary**: Overview of the job position.
@@ -23,8 +23,8 @@ The **Job Description Tool with Chatbot** is a **Streamlit-based application** d
 
 ### Step-by-step Guide to Set up EC2 and Deploy Application:
 
-1. **Log into your EC2 instance**:
-    - Access your instance via SSH using your EC2 key pair.
+1. **Log into an EC2 instance**:
+    - Access the instance via SSH using an EC2 key pair.
 
 2. **Switch to root**:
     ```bash
@@ -63,7 +63,7 @@ The **Job Description Tool with Chatbot** is a **Streamlit-based application** d
     ```bash
     streamlit run <PATH_TO_STREAMLIT_PY_FILE>
     ```
-    - You can now access the app in your browser using the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501)
+    - Now access the app in the browser using the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501)
 
 9. **Stop the Streamlit App**:
     - Press `Ctrl + C` to stop the app running in the terminal.
@@ -111,7 +111,7 @@ The **Job Description Tool with Chatbot** is a **Streamlit-based application** d
     ```bash
     docker ps
     ```
-    - Your app should now be accessible at the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501).
+    - The Streamlit app should now be accessible at the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501).
 
 ### Stopping the Application and EC2 Instance:
 18. **Stop Docker Container**:
@@ -125,7 +125,7 @@ The **Job Description Tool with Chatbot** is a **Streamlit-based application** d
 
 ## Docker Setup
 
-If you prefer to work directly with Docker, follow these steps to run the app:
+If necessary to work directly with Docker, follow these steps to run the app:
 
 1. **Build the Docker image**:
     ```bash
@@ -141,10 +141,10 @@ If you prefer to work directly with Docker, follow these steps to run the app:
     - Use the EC2 public IP: [http://54.224.25.176:8501](http://54.224.25.176:8501) to open the app in a web browser.
 
 ## Usage
-1. Open the app in your browser using the public IP and port.
+1. Open the app in the browser using the public IP and port.
 2. Navigate through the job description sections using the **Next/Back navigation buttons**.
 3. Input relevant details for each section (Job Summary, Key Responsibilities, Required Qualifications, Skills & Experience).
-4. Generate a job description based on your input and download it as a PDF.
+4. Generate a job description based on user input and download it as a PDF.
 
 ## License
 This project is licensed under the MIT License.
