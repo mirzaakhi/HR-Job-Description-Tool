@@ -1,13 +1,13 @@
-# HR Job Description Tool
+# Job Description Tool with Chatbot
 
 ## Overview
-The **HR Job Description Tool** is a **Streamlit-based application** designed to generate comprehensive HR job descriptions using ChatGPT. It allows users to create, refine, and download job descriptions tailored to specific criteria such as responsibilities, qualifications, and skills.
+The **Job Description Tool with Chatbot** is a **Streamlit-based application** designed to generate comprehensive job descriptions using ChatGPT. It allows users to create, refine, and download job descriptions tailored to specific criteria such as responsibilities, qualifications, and skills, for any kind of job.
 
 ## Features
 - **Job Summary**: Overview of the job position.
-- **Key Responsibilities**: Define major duties of the role.
+- **Key Responsibilities**: Define the major duties of the role.
 - **Required Qualifications**: Specify essential qualifications and certifications.
-- **Skills & Experience**: Highlight required skills and experience for the role.
+- **Skills & Experience**: Highlight the required skills and experience for the role.
 - **Refine Job Description**: Fine-tune job descriptions using ChatGPT.
 - **Download as PDF**: Export the final job description as a PDF.
 
@@ -129,12 +129,12 @@ If you prefer to work directly with Docker, follow these steps to run the app:
 
 1. **Build the Docker image**:
     ```bash
-    docker build -t hr-job-description-tool .
+    docker build -t job-description-tool .
     ```
 
 2. **Run the Docker container**:
     ```bash
-    docker run -d -p 8501:8501 hr-job-description-tool
+    docker run -d -p 8501:8501 job-description-tool
     ```
 
 3. **Access the app**:
@@ -142,8 +142,9 @@ If you prefer to work directly with Docker, follow these steps to run the app:
 
 ## Usage
 1. Open the app in your browser using the public IP and port.
-2. Use the sidebar to navigate through job description sections.
-3. Generate a job description based on your input and download it as a PDF.
+2. Navigate through the job description sections using the **Next/Back navigation buttons**.
+3. Input relevant details for each section (Job Summary, Key Responsibilities, Required Qualifications, Skills & Experience).
+4. Generate a job description based on your input and download it as a PDF.
 
 ## License
 This project is licensed under the MIT License.
