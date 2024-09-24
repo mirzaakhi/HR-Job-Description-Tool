@@ -59,15 +59,6 @@ To run the application inside a Docker container:
     docker run -d -p 8501:8501 hr-job-description-tool
     ```
 
-## AWS Components
-
-The application uses the following AWS services:
-- **EC2 (Elastic Compute Cloud)**: Hosts the application.
-- **ALB (Application Load Balancer)**: Distributes traffic.
-- **ECS (Elastic Container Service)**: Manages Docker containers (future deployment).
-- **ECR (Elastic Container Registry)**: Stores Docker images.
-- **IAM Role**: Manages permissions for accessing AWS resources.
-
 ## License
 
 This project is licensed under the MIT License.
