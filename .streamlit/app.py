@@ -169,6 +169,22 @@ def create_pdf(text):
 
 # Define the footer function
 def add_footer():
+    # Add a faint divider line
+    st.markdown("<hr style='border: 1px solid lightgrey;'>", unsafe_allow_html=True)
+
+    # Create columns to place three logos side by side
+    col1, col2, col3 = st.columns([1, 1, 1])  # Equal width columns for the three logos
+
+    with col1:
+        st.image("images/TCS1.png", width=150)  # Adjust the path as needed
+
+    with col2:
+        st.image("images/UL.png", width=120)  # Adjust the path as needed
+
+    with col3:
+        st.image("images/CRT1.png", width=220)  # Path to the uploaded CRT logo
+
+    # Footer with centered text
     footer = """
     <style>
     .footer {
@@ -184,7 +200,7 @@ def add_footer():
     }
     </style>
     <div class="footer">
-        &copy; 2024 Mirza Akhi, PhD Intern | Tata Consultancy Services
+        &copy; 2024 Mirza Akhi, PhD Intern | Tata Consultancy Services | University of Limerick | Ireland
     </div>
     """
     st.markdown(footer, unsafe_allow_html=True)
@@ -308,7 +324,7 @@ def key_responsibilities():
         if st.button("Next", key="responsibilities_next"):
             st.session_state['page'] += 1
     
-    add_footer()
+    #add_footer()
 
 # Function to handle Required Qualifications input
 def required_qualifications():
@@ -335,7 +351,7 @@ def required_qualifications():
         if st.button("Next", key="qualifications_next"):
             st.session_state['page'] += 1
     
-    add_footer()
+    #add_footer()
 
 # Function to handle Skills & Experience input
 def skills_experience():
@@ -359,7 +375,7 @@ def skills_experience():
         if st.button("Next", key="skills_next"):
             st.session_state['page'] += 1
     
-    add_footer()
+    #add_footer()
 
 # Function to handle How to Apply instructions
 def how_to_apply():
@@ -388,7 +404,7 @@ def how_to_apply():
         if st.button("Next", key="apply_next"):
             st.session_state['page'] += 1
     
-    add_footer()
+    #add_footer()
 
 
 # Function to handle job description refinement
@@ -429,27 +445,36 @@ def refine_job_description():
     refinement_instructions = st.text_area("Enter refinement instructions here:")
 
     if st.button("Submit Refinement"):
-        if refinement_instructions.strip():
-            # Include context in the refinement prompt
-            context = st.session_state['generated_job_description']
-            
-            # Updated prompt to ensure all fields are included
+        # Include context in the refinement prompt
+        context = st.session_state['generated_job_description']
+
+        # Conditional prompt based on job title
+        if st.session_state['job_title'].lower() in ["ml engineer", "machine learning engineer"]:
+            # Use the specific prompt for machine learning engineer role
             prompt = (f"Refine the following job description to be more concise and specific, ensuring that the skills, "
-          f"qualifications, and responsibilities are relevant to a machine learning engineer role. "
-          f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
-          f"such as web development frameworks. Keep the focus on machine learning algorithms, data science tools, "
-          f"and relevant programming languages like Python and R. \n\n{context}\n\n"
-          f"Refinement Instructions: {refinement_instructions}")
+                      f"qualifications, and responsibilities are relevant to a machine learning engineer role. "
+                      f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
+                      f"such as web development frameworks. Keep the focus on machine learning algorithms, data science tools, "
+                      f"and relevant programming languages like Python and R. \n\n{context}\n\n"
+                      f"Refinement Instructions: {refinement_instructions}")
+        else:
+            # Use the generalized prompt for other job titles
+            prompt = (f"Refine the following job description to be more concise and specific, ensuring that the skills, "
+                      f"qualifications, and responsibilities are relevant to the {st.session_state['job_title']} role. "
+                      f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
+                      f"and keep the focus on the key competencies and skills necessary for success in this role. "
+                      f"Make sure the job description is aligned with the industry standards for a {st.session_state['job_title']} position. \n\n"
+                      f"{context}\n\n"
+                      f"Refinement Instructions: {refinement_instructions}")
 
-            
-            refined_text = generate_response(prompt)
-            st.session_state['refined_description'] = refined_text
-            st.write("### Refined Job Description:")
+        refined_text = generate_response(prompt)
+        st.session_state['refined_description'] = refined_text
+        st.write("### Refined Job Description:")
 
-            # Properly format refined job description
-            refined_description_lines = refined_text.split("\n")  # Split lines for better formatting
-            for line in refined_description_lines:
-                st.write(line)
+        # Properly format refined job description
+        refined_description_lines = refined_text.split("\n")  # Split lines for better formatting
+        for line in refined_description_lines:
+            st.write(line)
 
     if st.session_state.get('refined_description'):
         pdf_file = create_pdf(st.session_state['refined_description'])
@@ -459,14 +484,14 @@ def refine_job_description():
             file_name='refined_job_description.pdf',
             mime='application/pdf'
         )
-    
+
     # Navigation buttons
     col1, col2, col3 = st.columns([0.8, 0.1, 0.1])
     with col1:
         if st.button("Back", key="refine_back"):
             st.session_state['page'] -= 1
-    
-    add_footer()
+
+    #add_footer()
 
 # Function to store inputs from previous pages in session state
 def store_inputs_in_session_state():
