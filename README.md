@@ -18,7 +18,7 @@ Before starting, ensure the following tools and platforms are set up and availab
 
 - **Python 3.8+**: This is for running the application locally or on an EC2 instance.
 - **Docker**: This is for containerizing and running the application in a Docker environment.
-- **VS Code**: This is for development purposes. Make sure to install the necessary extensions:
+- **VSCode**: This is for development purposes. Make sure to install the necessary extensions:
   - Python Extension
   - Docker Extension
 - **AWS Account**: Required for deploying the application to AWS services (EC2, ECR, ECS, ALB, IAM).
