@@ -1,15 +1,28 @@
 # Job Description Tool with Chatbot
 
 ## Overview
-The Job Description Tool with Chatbot is a Streamlit-based application designed to generate comprehensive job descriptions using ChatGPT. Users can create, refine, and download job descriptions customized to specific criteria, such as responsibilities, qualifications, and skills.
+The **Job Description Tool with Chatbot** is a Streamlit-based application designed to generate comprehensive job descriptions using ChatGPT. It integrates with OpenAI's GPT model to help refine job descriptions, making it easy to create and modify job postings efficiently. Users can generate, refine, and download customized job descriptions based on specific criteria such as responsibilities, qualifications, and skills.
 
 ## Features
 - **Job Summary**: Overview of the job position.
-- **Key Responsibilities**: Define the major duties of the role.
+- **Key Responsibilities**: Define the significant duties of the role.
 - **Required Qualifications**: Specify essential qualifications and certifications.
 - **Skills & Experience**: Highlight the required skills and experience for the role.
+- **How to Apply**: Provide instructions on how candidates can apply for the role, including application email, deadline, and additional instructions.
 - **Refine Job Description**: Fine-tune job descriptions using ChatGPT.
 - **Download as PDF**: Export the final job description as a PDF.
+
+## Required Tools and Platforms
+
+Before starting, ensure the following tools and platforms are set up and available:
+
+- **Python 3.8+**: This is for running the application locally or on an EC2 instance.
+- **Docker**: This is for containerizing and running the application in a Docker environment.
+- **VS Code**: This is for development purposes. Make sure to install the necessary extensions:
+  - Python Extension
+  - Docker Extension
+- **AWS Account**: Required for deploying the application to AWS services (EC2, ECR, ECS, ALB, IAM).
+
 
 ## AWS Infrastructure Components
 
@@ -21,7 +34,7 @@ The Job Description Tool with Chatbot is a Streamlit-based application designed 
 
 ## Installation on AWS EC2
 
-To set up the HR Job Description Tool on an **AWS EC2 instance**, follow these high-level steps:
+To set up the Job Description Tool with Chatbot on an **AWS EC2 instance**, follow these steps:
 
 1. **Clone the Repository**:
     ```bash
@@ -55,8 +68,8 @@ To run the application inside a Docker container:
 ## Usage
 
 - Access the application using the public IP address of the EC2 instance on port **8501**.
-- Use the sidebar to navigate through the different sections of the job description.
-- Generate a job description based on input criteria and download it as a PDF.
+- Use the Next and Back buttons to navigate through sections such as 'Job Summary,' 'Key Responsibilities,' and 'Skills & Experience.'
+- Generate a job description based on user input using OpenAI/ChatGPT, refine it further with ChatGPT, and download the final refined version as a PDF
 
 ## License
 
