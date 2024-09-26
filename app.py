@@ -10,7 +10,6 @@ from fpdf import FPDF
 # Load OpenAI API key securely
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
 # Initialize session state variables
 session_variables = ['job_summary_complete', 'job_title', 'department', 'location', 
                      'salary_range', 'additional_comments', 'role_description', 
@@ -451,23 +450,34 @@ def refine_job_description():
         # Conditional prompt based on job title
         if st.session_state['job_title'].lower() in ["ml engineer", "machine learning engineer"]:
             # Use the specific prompt for machine learning engineer role
+            full_job_title = "Machine Learning Engineer"  # Define full job title for ML role
+            # Use the specific prompt for machine learning engineer role
             prompt = (f"Refine the following job description to be more concise and specific, ensuring that the skills, "
-                      f"qualifications, and responsibilities are relevant to a machine learning engineer role. "
-                      f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
-                      f"such as web development frameworks. Keep the focus on machine learning algorithms, data science tools, "
-                      f"and relevant programming languages like Python and R. \n\n{context}\n\n"
-                      f"Refinement Instructions: {refinement_instructions}")
+                  f"qualifications, and responsibilities are relevant to a {full_job_title} role. "
+                  f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
+                  f"such as Java, JavaScript, React, or Django. Focus instead on machine learning concepts, "
+                  f"data science tools, and relevant programming languages like Python and R. "
+                  f"Highlight experience with ML libraries such as TensorFlow, PyTorch, scikit-learn, and tools for data manipulation like Pandas and NumPy. "
+                  f"Ensure the job description emphasizes ML-focused skills and is concise. \n\n{context}\n\n"
+                  f"Refinement Instructions: {refinement_instructions}")
         else:
             # Use the generalized prompt for other job titles
             prompt = (f"Refine the following job description to be more concise and specific, ensuring that the skills, "
-                      f"qualifications, and responsibilities are relevant to the {st.session_state['job_title']} role. "
-                      f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
-                      f"and keep the focus on the key competencies and skills necessary for success in this role. "
-                      f"Make sure the job description is aligned with the industry standards for a {st.session_state['job_title']} position. \n\n"
-                      f"{context}\n\n"
-                      f"Refinement Instructions: {refinement_instructions}")
+                  f"qualifications, and responsibilities are relevant to the {full_job_title} role. "
+                  f"Remove any irrelevant programming languages or technologies that are not typically required for this role, "
+                  f"and keep the focus on the key competencies and skills necessary for success in this role. "
+                  f"Ensure the job description is aligned with the industry standards for a {full_job_title} position. \n\n"
+                  f"{context}\n\n"
+                  f"Refinement Instructions: {refinement_instructions}")
 
+         # Generate the refined job description with GPT
         refined_text = generate_response(prompt)
+        # Post-process the refined text to replace 'ML engineers' with 'Machine Learning Engineers'
+        refined_text = refined_text.replace("ML engineers", "Machine Learning Engineers")
+
+        # Post-process the refined text to replace 'ML' with 'Machine Learning'
+        refined_text = refined_text.replace("ML", "Machine Learning")
+
         st.session_state['refined_description'] = refined_text
         st.write("### Refined Job Description:")
 
