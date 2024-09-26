@@ -1,73 +1,76 @@
-# HR Job Description Tool
+# Job Description Tool with Chatbot
 
-## Description
-
-A simple Streamlit-based application to generate HR job descriptions based on different criteria.
+## Overview
+The **Job Description Tool with Chatbot** is a Streamlit-based application designed to generate comprehensive job descriptions using ChatGPT. It integrates with OpenAI's GPT model to help refine job descriptions, making it easy to create and modify job postings efficiently. Users can generate, refine, and download customized job descriptions based on specific criteria such as responsibilities, qualifications, and skills.
 
 ## Features
-
 - **Job Summary**: Overview of the job position.
-- **Key Responsibilities**: Lists the major duties of the job.
-- **Required Qualifications**: Specifies the qualifications required for the job.
-- **Skills & Experience**: Details the skills and experience required for the job.
-- **How to Apply**: Provides application instructions.
-- **Generate Custom Job Description**: Allows users to create custom job descriptions based on input criteria.
+- **Key Responsibilities**: Define the significant duties of the role.
+- **Required Qualifications**: Specify essential qualifications and certifications.
+- **Skills & Experience**: Highlight the required skills and experience for the role.
+- **How to Apply**: Provide instructions on how candidates can apply for the role, including application email, deadline, and additional instructions.
+- **Refine Job Description**: Fine-tune job descriptions using ChatGPT.
+- **Download as PDF**: Export the final job description as a PDF.
 
-## Installation
+## Required Tools and Platforms
 
-1. Clone the repository:
+Before starting, ensure the following tools and platforms are set up and available:
 
+- **Python 3.8+**: This is for running the application locally or on an EC2 instance.
+- **Docker**: This is for containerizing and running the application in a Docker environment.
+- **VSCode**: This is for development purposes. Make sure to install the necessary extensions:
+  - Python Extension
+  - Docker Extension
+- **AWS Account**: Required for deploying the application to AWS services (EC2, ECR, ECS, ALB, IAM).
+
+
+## AWS Infrastructure Components
+
+- **EC2 (Elastic Compute Cloud)**: Hosts the application on a virtual machine instance. The public IP for accessing the deployed app is [http://54.224.25.176:8501](http://54.224.25.176:8501).
+- **ALB (Application Load Balancer)**: Distributes traffic across the application, ensuring scalability and high availability.
+- **ECS (Elastic Container Service)**: Manages and conducts Docker containers for future deployments with **Fargate**.
+- **ECR (Elastic Container Registry)**: Stores Docker images for deployment in **ECS**.
+- **IAM Role**: Manages access and permissions for AWS resources used by the application.
+
+## Installation on AWS EC2
+
+To set up the Job Description Tool with Chatbot on an **AWS EC2 instance**, follow these steps:
+
+1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/yourusername/HR-Job-Description-Tool.git
-    cd HR-Job-Description-Tool
+    git clone <REPO_LINK>
+    cd <PROJECT_REPO>
     ```
 
-2. Install dependencies:
-
+2. **Install Dependencies**:
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Run the Streamlit app:
-
+3. **Run the Application**:
     ```bash
     streamlit run app.py
     ```
-
-## Usage
-
-- Open the app in your browser using the URL provided by Streamlit.
-- Navigate using the sidebar to see different sections of the job description.
-- Fill in details to generate a custom job description.
-
 ## Docker Setup
 
-If you prefer using Docker:
+To run the application inside a Docker container:
 
-1. Build the Docker image:
-
+1. **Build the Docker image**:
     ```bash
     docker build -t hr-job-description-tool .
     ```
 
-2. Run the Docker container:
-
+2. **Run the Docker container**:
     ```bash
-    docker run -p 8501:8501 hr-job-description-tool
+    docker run -d -p 8501:8501 hr-job-description-tool
     ```
+    
+## Usage
 
-## Contributing
-
-Feel free to submit issues and pull requests.
+- Access the application using the public IP address of the EC2 instance on port **8501**.
+- Use the Next and Back buttons to navigate through sections such as 'Job Summary,' 'Key Responsibilities,' and 'Skills & Experience.'
+- Generate a job description based on user input using OpenAI/ChatGPT, refine it further with ChatGPT, and download the final refined version as a PDF
 
 ## License
 
 This project is licensed under the MIT License.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
